@@ -22,7 +22,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenQuote }) => {
           
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 text-slate-800 text-xs font-bold shadow-xs mb-5 font-['Space_Grotesk']">
             <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-            <span>{lang === 'AR' ? 'Sino Gate 華門國際' : 'Sino Gate 華門國際'}</span>
+            <span>Sino Gate</span>
             <span className="text-slate-300">|</span>
             <span className="text-blue-700 font-semibold">{lang === 'AR' ? 'عمليات شنتشن وهونغ كونغ' : 'Shenzhen & Hong Kong Operations'}</span>
           </div>

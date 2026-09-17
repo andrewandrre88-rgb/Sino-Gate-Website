@@ -54,11 +54,9 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
               <img src="https://raw.githubusercontent.com/andrewandrre88-rgb/MILA-PLASTICS-IMAGES/main/sourcing%20(Logo)%20(1).png" alt="Logo" className="h-10 w-auto object-contain" />
               <div>
                 <span className="text-lg font-extrabold text-white font-['Space_Grotesk']">
-                  SINO GATE
+                  {lang === 'AR' ? 'بوابة الصين' : 'SINO GATE'}
                 </span>
-                <span className="text-xs text-blue-400 font-semibold block">
-                  華門國際供應鏈有限公司
-                </span>
+                
               </div>
             </div>
 

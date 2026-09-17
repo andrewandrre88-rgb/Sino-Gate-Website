@@ -89,10 +89,10 @@ export const InteractiveRouteCard: React.FC<InteractiveRouteCardProps> = ({ onOp
           </div>
 
           {/* Mode Switcher Pills (like the Round trip / One way / Multi city pills in the reference) */}
-          <div className="inline-flex p-1.5 bg-[#F1F4F9] rounded-full border border-slate-200/80 self-start lg:self-center">
+          <div className="flex overflow-x-auto w-full sm:w-auto sm:inline-flex p-1.5 bg-[#F1F4F9] rounded-2xl sm:rounded-full border border-slate-200/80 self-start lg:self-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             <button
               onClick={() => setSelectedMode('sea_fcl')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all ${
+              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap shrink-0 ${
                 selectedMode === 'sea_fcl'
                   ? 'bg-blue-600 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
@@ -103,7 +103,7 @@ export const InteractiveRouteCard: React.FC<InteractiveRouteCardProps> = ({ onOp
             </button>
             <button
               onClick={() => setSelectedMode('sea_lcl')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all ${
+              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap shrink-0 ${
                 selectedMode === 'sea_lcl'
                   ? 'bg-blue-600 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
@@ -114,7 +114,7 @@ export const InteractiveRouteCard: React.FC<InteractiveRouteCardProps> = ({ onOp
             </button>
             <button
               onClick={() => setSelectedMode('air')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all ${
+              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap shrink-0 ${
                 selectedMode === 'air'
                   ? 'bg-blue-600 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
@@ -125,7 +125,7 @@ export const InteractiveRouteCard: React.FC<InteractiveRouteCardProps> = ({ onOp
             </button>
             <button
               onClick={() => setSelectedMode('rail')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all ${
+              className={`flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all whitespace-nowrap shrink-0 ${
                 selectedMode === 'rail'
                   ? 'bg-blue-600 text-white shadow-sm'
                   : 'text-slate-600 hover:text-slate-900'
@@ -178,9 +178,9 @@ export const InteractiveRouteCard: React.FC<InteractiveRouteCardProps> = ({ onOp
                   type="button"
                   onClick={handleSwap}
                   title="Cycle China export port"
-                  className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white border border-slate-300 shadow-md items-center justify-center text-slate-600 hover:text-blue-600 hover:scale-105 active:scale-95 transition-all"
+                  className="flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-white border border-slate-300 shadow-md items-center justify-center text-slate-600 hover:text-blue-600 hover:scale-105 active:scale-95 transition-all"
                 >
-                  <ArrowRightLeft className="w-4 h-4" />
+                  <ArrowRightLeft className="w-4 h-4 rotate-90 md:rotate-0" />
                 </button>
 
                 {/* To Destination */}

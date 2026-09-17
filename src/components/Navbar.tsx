@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, activeSection }) =>
     <>
       {/* Top micro-bar: Verified operational status & hotline */}
       <header className="w-full bg-[#111622] text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-3 text-center sm:text-left">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-1.5 text-emerald-400 font-medium">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -69,11 +69,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, activeSection }) =>
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xl font-extrabold tracking-tight text-slate-900 font-['Space_Grotesk']">
-                  SINO GATE
+                  {lang === 'AR' ? 'بوابة الصين' : 'SINO GATE'}
                 </span>
-                <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                  華門國際
-                </span>
+                
               </div>
               <p className="text-[11px] text-slate-500 font-medium tracking-wide">
                 {lang === 'AR' ? 'بوابتك للتجارة واللوجستيات في الصين' : 'China Trade & Logistics Gateway'}
