@@ -8,6 +8,7 @@ import { CorporateFormationSection } from './components/CorporateFormationSectio
 import { OfficesLocationsSection } from './components/OfficesLocationsSection';
 import { Footer } from './components/Footer';
 import { QuoteInquiryModal } from './components/QuoteInquiryModal';
+import { WhatsAppButton } from './components/WhatsAppButton';
 
 export default function App() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -88,6 +89,9 @@ export default function App() {
         onClose={handleCloseQuote}
         defaultData={quoteDefaultData}
       />
+
+      {/* Floating WhatsApp Action */}
+      <WhatsAppButton />
     </div>
   );
 }

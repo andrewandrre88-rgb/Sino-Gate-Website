@@ -99,7 +99,7 @@ export const QuoteInquiryModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, 
               </div>
               <p>• A bilingual China trade specialist will review your cargo/specifications within <strong>1 business hour</strong>.</p>
               <p>• You will receive a direct formal breakdown via email ({email || 'your email'}) and WhatsApp.</p>
-              <p>• Direct contact: <a href="tel:+8618567413851" className="text-blue-600 font-semibold">+86 18567413851</a></p>
+              <p>• Direct contact: <a href="tel:+8618567413851" className="text-blue-600 font-semibold" dir="ltr">+86 18567413851</a></p>
             </div>
 
             <button

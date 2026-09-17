@@ -110,7 +110,7 @@ export const OfficesLocationsSection: React.FC<OfficesLocationsProps> = ({ onOpe
                   className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all flex items-center gap-2"
                 >
                   <Phone className="w-3.5 h-3.5 text-blue-400" />
-                  <span>{lang === 'AR' ? 'واتساب / هاتف: ' + activeHub.phone : 'WhatsApp / Call: ' + activeHub.phone}</span>
+                  <span>{lang === 'AR' ? 'واتساب / هاتف: ' : 'WhatsApp / Call: '}<span dir="ltr">{activeHub.phone}</span></span>
                 </a>
                 <a
                   href={`mailto:${activeHub.email}`}

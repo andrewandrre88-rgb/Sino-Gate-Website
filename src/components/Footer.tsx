@@ -31,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
               className="px-6 py-3.5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-600 transition-all flex items-center gap-2"
             >
               <Phone className="w-3.5 h-3.5 text-blue-400" />
-              <span>+86 18567413851</span>
+              <span dir="ltr">+86 18567413851</span>
             </a>
             <button
               onClick={() => onOpenQuote()}

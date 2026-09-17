@@ -47,7 +47,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, activeSection }) =>
           <div className="flex items-center gap-5 text-xs">
             <a href="https://wa.me/8618567413851" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center gap-1.5">
               <Phone className="w-3.5 h-3.5 text-blue-400" />
-              <span className="hidden sm:inline">{lang === 'AR' ? 'واتساب / هاتف:' : 'WhatsApp / Phone:'}</span> +86 18567413851
+              <span className="hidden sm:inline">{lang === 'AR' ? 'واتساب / هاتف:' : 'WhatsApp / Phone:'}</span> <span dir="ltr">+86 18567413851</span>
             </a>
             <button
               onClick={() => setLang(lang === 'EN' ? 'AR' : 'EN')}
