@@ -13,38 +13,40 @@ import {
   Compass,
   Check
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface FreightServicesProps {
   onOpenQuote: (service?: string) => void;
 }
 
 export const FreightServicesSection: React.FC<FreightServicesProps> = ({ onOpenQuote }) => {
+  const { lang, isRtl } = useLanguage();
   const [selectedContainer, setSelectedContainer] = useState<'20gp' | '40gp' | '40hq'>('40hq');
 
   const containerSpecs = {
     '20gp': {
-      name: "20' General Purpose Container",
+      name: lang === 'AR' ? "حاوية 20 قدم قياسية" : "20' General Purpose Container",
       cbm: '33.2 CBM',
       payload: '28,180 kg',
       dims: '5.90m × 2.35m × 2.39m',
-      palletCapacity: '10 Standard Pallets (1000×1200mm) or 11 Euro Pallets',
-      ideal: 'Dense, heavy industrial goods, raw metals, hardware, ceramic tiles',
+      palletCapacity: lang === 'AR' ? '10 منصات قياسية' : '10 Standard Pallets (1000×1200mm) or 11 Euro Pallets',
+      ideal: lang === 'AR' ? 'السلع الصناعية الثقيلة، المعادن الخام، الأجهزة، بلاط السيراميك' : 'Dense, heavy industrial goods, raw metals, hardware, ceramic tiles',
     },
     '40gp': {
-      name: "40' General Purpose Container",
+      name: lang === 'AR' ? "حاوية 40 قدم قياسية" : "40' General Purpose Container",
       cbm: '67.7 CBM',
       payload: '26,680 kg',
       dims: '12.03m × 2.35m × 2.39m',
-      palletCapacity: '21 Standard Pallets or 25 Euro Pallets',
-      ideal: 'Balanced general consumer electronics, machinery, footwear, packed dry cargo',
+      palletCapacity: lang === 'AR' ? '21 منصة قياسية' : '21 Standard Pallets or 25 Euro Pallets',
+      ideal: lang === 'AR' ? 'الإلكترونيات الاستهلاكية العامة، الآلات، الأحذية، البضائع الجافة' : 'Balanced general consumer electronics, machinery, footwear, packed dry cargo',
     },
     '40hq': {
-      name: "40' High Cube Container (HQ)",
+      name: lang === 'AR' ? "حاوية 40 قدم عالية (HQ)" : "40' High Cube Container (HQ)",
       cbm: '76.4 CBM',
       payload: '26,580 kg',
-      dims: '12.03m × 2.35m × 2.69m (Extra 30cm Height)',
-      palletCapacity: '21 Standard Pallets or 25 Euro Pallets (Higher vertical stacking)',
-      ideal: 'Voluminous light goods, furniture, textiles, apparel, toys, e-commerce cartons',
+      dims: lang === 'AR' ? '12.03م × 2.35م × 2.69م' : '12.03m × 2.35m × 2.69m (Extra 30cm Height)',
+      palletCapacity: lang === 'AR' ? '21 منصة قياسية' : '21 Standard Pallets or 25 Euro Pallets (Higher vertical stacking)',
+      ideal: lang === 'AR' ? 'البضائع الخفيفة الضخمة، الأثاث، المنسوجات، الملابس، الألعاب' : 'Voluminous light goods, furniture, textiles, apparel, toys, e-commerce cartons',
     },
   };
 
@@ -57,15 +59,15 @@ export const FreightServicesSection: React.FC<FreightServicesProps> = ({ onOpenQ
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold mb-4 font-['Space_Grotesk']">
-            <span>Global Multimodal Logistics</span>
+            <span>{lang === 'AR' ? 'الخدمات اللوجستية العالمية المتعددة الوسائط' : 'Global Multimodal Logistics'}</span>
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-            <span>NVOCC Licensed</span>
+            <span>{lang === 'AR' ? 'مرخص كـ NVOCC' : 'NVOCC Licensed'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-['Space_Grotesk']">
-            Direct carrier contracts & door-to-door DDP delivery
+            {lang === 'AR' ? 'عقود الشحن المباشرة والتوصيل من الباب للباب (DDP)' : 'Direct carrier contracts & door-to-door DDP delivery'}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
-            From single-pallet LCL consolidation to full charter vessels, Sino Gate manages origin export customs, ocean/air shipping lines, and destination delivery without intermediate freight broker markups.
+            {lang === 'AR' ? 'من تجميع الشحنات الجزئية (LCL) إلى الشحن البحري والجوي الكامل. تدير Sino Gate الجمارك وخطوط الشحن وتوصيل الوجهة النهائية بدون وسطاء أو عمولات إضافية.' : 'From single-pallet LCL consolidation to full charter vessels, Sino Gate manages origin export customs, ocean/air shipping lines, and destination delivery without intermediate freight broker markups.'}
           </p>
         </div>
 
@@ -84,18 +86,18 @@ export const FreightServicesSection: React.FC<FreightServicesProps> = ({ onOpenQ
                       <Icon className="w-6 h-6" />
                     </div>
                     <span className="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
-                      {mode.badge}
+                      {lang === 'AR' && mode.badgeAr ? mode.badgeAr : mode.badge}
                     </span>
                   </div>
                   
                   <h3 className="text-lg font-extrabold text-slate-900 mb-1 font-['Space_Grotesk']">
-                    {mode.name}
+                    {lang === 'AR' && mode.nameAr ? mode.nameAr : mode.name}
                   </h3>
                   <span className="text-xs font-bold text-blue-700 block mb-3">
-                    Typical Transit: {mode.typicalTime}
+                    {lang === 'AR' ? 'وقت العبور: ' + (mode.typicalTimeAr || mode.typicalTime) : 'Typical Transit: ' + mode.typicalTime}
                   </span>
                   <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                    {mode.summary}
+                    {lang === 'AR' && mode.summaryAr ? mode.summaryAr : mode.summary}
                   </p>
 
                   <ul className="space-y-2 pt-2 border-t border-slate-100 text-[11px] text-slate-600">
@@ -112,7 +114,7 @@ export const FreightServicesSection: React.FC<FreightServicesProps> = ({ onOpenQ
                   onClick={() => onOpenQuote(mode.id)}
                   className="mt-6 w-full py-2.5 rounded-full bg-slate-100 hover:bg-blue-600 hover:text-white text-slate-800 text-xs font-bold transition-all flex items-center justify-center gap-1.5"
                 >
-                  <span>Book {mode.name.split(' ')[0]} Rate</span>
+                  <span>Book {(lang === 'AR' && mode.nameAr ? mode.nameAr : mode.name).split(' ')[0]} Rate</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </button>
               </div>

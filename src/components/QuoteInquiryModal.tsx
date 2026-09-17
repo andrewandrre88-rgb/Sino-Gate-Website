@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, Send, ShieldCheck, Clock, FileText, Phone, Mail, Building, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -14,6 +15,7 @@ interface QuoteModalProps {
 }
 
 export const QuoteInquiryModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, defaultData }) => {
+  const { lang, isRtl } = useLanguage();
   const [serviceType, setServiceType] = useState<string>('freight');
   const [fullName, setFullName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -69,7 +71,7 @@ export const QuoteInquiryModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, 
         {/* Close Button */}
         <button
           onClick={handleReset}
-          className="absolute top-6 right-6 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+          className="absolute top-6 right-6 rtl:right-auto rtl:left-6 p-2 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
@@ -97,7 +99,7 @@ export const QuoteInquiryModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, 
               </div>
               <p>• A bilingual China trade specialist will review your cargo/specifications within <strong>1 business hour</strong>.</p>
               <p>• You will receive a direct formal breakdown via email ({email || 'your email'}) and WhatsApp.</p>
-              <p>• Direct contact: <a href="tel:+8675588269100" className="text-blue-600 font-semibold">+86 755 8826 9100</a></p>
+              <p>• Direct contact: <a href="tel:+8618567413851" className="text-blue-600 font-semibold">+86 18567413851</a></p>
             </div>
 
             <button
@@ -120,7 +122,7 @@ export const QuoteInquiryModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, 
               Request a formal proposal & rates
             </h3>
             <p className="text-xs text-slate-500 mb-6">
-              China exports, local sourcing audits, quality inspection, and HK/China corporate formation. Response guaranteed within 1 business hour.
+              {lang === 'AR' ? 'الشحن، التوريد، الفحص، والتأسيس. نضمن الرد خلال ساعة عمل واحدة.' : 'China exports, local sourcing audits, quality inspection, and HK/China corporate formation. Response guaranteed within 1 business hour.'}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -128,16 +130,16 @@ export const QuoteInquiryModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, 
               {/* Service Type Selector Pills */}
               <div>
                 <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1.5">
-                  Select Primary Service
+                  {lang === 'AR' ? 'الخدمة المطلوبة' : 'Select Primary Service'}
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {[
-                    { id: 'freight', label: 'Freight & Logistics' },
-                    { id: 'sourcing', label: 'China Sourcing' },
-                    { id: 'inspection', label: 'Quality Inspection (AQL)' },
-                    { id: 'china_company', label: 'Open China Company (WFOE)' },
-                    { id: 'hk_company', label: 'Open HK Company' },
-                    { id: 'other', label: 'Custom Trade Consulting' },
+                    { id: 'freight', label: lang === 'AR' ? 'الشحن واللوجستيات' : 'Freight & Logistics' },
+                    { id: 'sourcing', label: lang === 'AR' ? 'التوريد من الصين' : 'China Sourcing' },
+                    { id: 'inspection', label: lang === 'AR' ? 'فحص الجودة' : 'Quality Inspection (AQL)' },
+                    { id: 'china_company', label: lang === 'AR' ? 'تأسيس شركة صينية' : 'Open China Company' },
+                    { id: 'hk_company', label: lang === 'AR' ? 'شركة هونغ كونغ' : 'Open HK Company' },
+                    { id: 'other', label: lang === 'AR' ? 'استشارة أخرى' : 'Custom Trade Consulting' },
                   ].map((srv) => (
                     <button
                       key={srv.id}

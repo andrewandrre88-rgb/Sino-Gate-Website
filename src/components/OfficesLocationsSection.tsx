@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { OFFICE_HUBS } from '../data/logisticsData';
+import { useLanguage } from '../context/LanguageContext';
 import { MapPin, Phone, Mail, Clock, ShieldCheck, Building, CheckCircle2, UserCheck } from 'lucide-react';
 
 interface OfficesLocationsProps {
@@ -9,6 +10,7 @@ interface OfficesLocationsProps {
 export const OfficesLocationsSection: React.FC<OfficesLocationsProps> = ({ onOpenQuote }) => {
   const [selectedHubIndex, setSelectedHubIndex] = useState<number>(0);
   const activeHub = OFFICE_HUBS[selectedHubIndex] || OFFICE_HUBS[0];
+  const { lang } = useLanguage();
 
   return (
     <section id="offices" className="py-20 bg-white border-b border-slate-200/80">
@@ -21,12 +23,8 @@ export const OfficesLocationsSection: React.FC<OfficesLocationsProps> = ({ onOpe
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
             <span>Greater China Operations</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-['Space_Grotesk']">
-            Physical offices in China's key trade & manufacturing capitals
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
-            We are not a remote middleman sitting overseas. Our bilingual logistics coordinators, certified QA inspectors, and corporate legal specialists work on the ground across Shenzhen, Hong Kong, Ningbo, Yiwu, and Shanghai every single day.
-          </p>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-['Space_Grotesk']">{lang === 'AR' ? 'مكاتب فعلية في أهم عواصم التجارة والتصنيع في الصين' : 'Physical offices in China\'s key trade & manufacturing capitals'}</h2>
+          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">{lang === 'AR' ? 'نحن لسنا وسطاء عن بعد. يعمل منسقو الخدمات اللوجستية، ومفتشو الجودة المعتمدون، والأخصائيون القانونيون لدينا ميدانياً في شينزين، وهونغ كونغ، ونينغبو، وإيوو، وشانغهاي كل يوم.' : 'We are not a remote middleman sitting overseas. Our bilingual logistics coordinators, certified QA inspectors, and corporate legal specialists work on the ground across Shenzhen, Hong Kong, Ningbo, Yiwu, and Shanghai every single day.'}</p>
         </div>
 
         {/* Hubs Selector Tabs */}
@@ -48,14 +46,14 @@ export const OfficesLocationsSection: React.FC<OfficesLocationsProps> = ({ onOpe
                   <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
                     isSelected ? 'bg-slate-800 text-slate-300' : 'bg-white text-slate-500'
                   }`}>
-                    {idx === 0 ? 'HQ' : 'Hub'}
+                    {lang === 'AR' ? (idx === 0 ? 'المقر' : 'مركز') : (idx === 0 ? 'HQ' : 'Hub')}
                   </span>
                 </div>
                 <h3 className="font-extrabold text-sm sm:text-base font-['Space_Grotesk']">
-                  {hub.city.split('(')[0]}
+                  {(lang === 'AR' && hub.cityAr ? hub.cityAr : hub.city).split('(')[0]}
                 </h3>
                 <p className={`text-xs mt-1 truncate ${isSelected ? 'text-slate-400' : 'text-slate-500'}`}>
-                  {hub.region.split('/')[0]}
+                  {(lang === 'AR' && hub.regionAr ? hub.regionAr : hub.region).split('/')[0]}
                 </p>
               </button>
             );
@@ -70,13 +68,13 @@ export const OfficesLocationsSection: React.FC<OfficesLocationsProps> = ({ onOpe
             <div className="lg:col-span-7 space-y-5">
               <div>
                 <span className="text-xs font-bold text-blue-700 uppercase tracking-wider block mb-1">
-                  {activeHub.role}
+                  {lang === 'AR' && activeHub.roleAr ? activeHub.roleAr : activeHub.role}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-['Space_Grotesk']">
-                  {activeHub.city}
+                  {lang === 'AR' && activeHub.cityAr ? activeHub.cityAr : activeHub.city}
                 </h3>
                 <p className="text-xs font-medium text-slate-500 mt-1">
-                  {activeHub.region}
+                  {lang === 'AR' && activeHub.regionAr ? activeHub.regionAr : activeHub.region}
                 </p>
               </div>
 
@@ -84,7 +82,7 @@ export const OfficesLocationsSection: React.FC<OfficesLocationsProps> = ({ onOpe
                 <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white border border-slate-200/80">
                   <MapPin className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 block mb-0.5">Physical Address:</strong>
+                    <strong className="text-slate-900 block mb-0.5">{lang === 'AR' ? 'العنوان الفعلي:' : 'Physical Address:'}</strong>
                     <span>{activeHub.address}</span>
                   </div>
                 </div>
@@ -92,16 +90,16 @@ export const OfficesLocationsSection: React.FC<OfficesLocationsProps> = ({ onOpe
                 <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white border border-slate-200/80">
                   <UserCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 block mb-0.5">Station Director & Lead:</strong>
-                    <span>{activeHub.teamLead}</span>
+                    <strong className="text-slate-900 block mb-0.5">{lang === 'AR' ? 'مدير المحطة والقائد:' : 'Station Director & Lead:'}</strong>
+                    <span>{lang === 'AR' && activeHub.teamLeadAr ? activeHub.teamLeadAr : activeHub.teamLead}</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white border border-slate-200/80">
                   <ShieldCheck className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 block mb-0.5">Regional Core Capabilities:</strong>
-                    <span>{activeHub.specialty}</span>
+                    <strong className="text-slate-900 block mb-0.5">{lang === 'AR' ? 'القدرات الإقليمية الأساسية:' : 'Regional Core Capabilities:'}</strong>
+                    <span>{lang === 'AR' && activeHub.specialtyAr ? activeHub.specialtyAr : activeHub.specialty}</span>
                   </div>
                 </div>
               </div>
@@ -112,7 +110,7 @@ export const OfficesLocationsSection: React.FC<OfficesLocationsProps> = ({ onOpe
                   className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all flex items-center gap-2"
                 >
                   <Phone className="w-3.5 h-3.5 text-blue-400" />
-                  <span>Call Direct: {activeHub.phone}</span>
+                  <span>{lang === 'AR' ? 'واتساب / هاتف: ' + activeHub.phone : 'WhatsApp / Call: ' + activeHub.phone}</span>
                 </a>
                 <a
                   href={`mailto:${activeHub.email}`}
@@ -143,29 +141,29 @@ export const OfficesLocationsSection: React.FC<OfficesLocationsProps> = ({ onOpe
 
               <div className="space-y-2 text-xs">
                 <div className="flex justify-between py-1.5 border-b border-slate-800/60 text-slate-300">
-                  <span>Standard Business Hours:</span>
+                  <span>{lang === 'AR' ? 'ساعات العمل الرسمية:' : 'Standard Business Hours:'}</span>
                   <span className="font-bold text-white">{activeHub.operatingHours.split('(')[0]}</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-800/60 text-slate-300">
-                  <span>Duty Dispatch:</span>
+                  <span>{lang === 'AR' ? 'إرسال الطوارئ:' : 'Duty Dispatch:'}</span>
                   <span className="font-bold text-emerald-400">24/7 Port Emergency Contact</span>
                 </div>
                 <div className="flex justify-between py-1.5 border-b border-slate-800/60 text-slate-300">
-                  <span>Language Capabilities:</span>
+                  <span>{lang === 'AR' ? 'القدرات اللغوية:' : 'Language Capabilities:'}</span>
                   <span className="font-bold text-white">English, Mandarin, Cantonese</span>
                 </div>
                 <div className="flex justify-between py-1.5 text-slate-300">
-                  <span>On-site Inspection Dispatch:</span>
+                  <span>{lang === 'AR' ? 'إرسال التفتيش الميداني:' : 'On-site Inspection Dispatch:'}</span>
                   <span className="font-bold text-blue-400">Within 24-48 Hours</span>
                 </div>
               </div>
 
               <div className="pt-3 border-t border-slate-800">
                 <button
-                  onClick={() => onOpenQuote(`hub_${activeHub.city}`)}
+                  onClick={() => onOpenQuote(`hub_${lang === 'AR' && activeHub.cityAr ? activeHub.cityAr : activeHub.city}`)}
                   className="w-full py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-600/30 transition-all flex items-center justify-center gap-2"
                 >
-                  <span>Connect with {activeHub.city.split(' ')[0]} Team</span>
+                  <span>Connect with {(lang === 'AR' && activeHub.cityAr ? activeHub.cityAr : activeHub.city).split(' ')[0]} Team</span>
                   <span className="text-blue-200">›››</span>
                 </button>
               </div>

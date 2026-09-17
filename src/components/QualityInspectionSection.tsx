@@ -14,12 +14,14 @@ import {
   Truck,
   Layers
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface QualityInspectionProps {
   onOpenQuote: (service?: string) => void;
 }
 
 export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onOpenQuote }) => {
+  const { lang, isRtl } = useLanguage();
   const [selectedInspectionId, setSelectedInspectionId] = useState<string>('psi');
   const [lotSizeInput, setLotSizeInput] = useState<number>(3500);
   const [showChecklistModal, setShowChecklistModal] = useState<boolean>(false);
@@ -39,15 +41,15 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
         {/* Section Header */}
         <div className="max-w-3xl mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold mb-4 font-['Space_Grotesk']">
-            <span>Factory Quality Inspection</span>
+            <span>{lang === 'AR' ? 'فحص جودة المصنع' : 'Factory Quality Inspection'}</span>
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
-            <span>ISO 2859-1 (AQL Level II)</span>
+            <span>{lang === 'AR' ? 'المعيار ISO 2859-1 (AQL Level II)' : 'ISO 2859-1 (AQL Level II)'}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-['Space_Grotesk']">
-            Never pay your final supplier balance without an independent check
+            {lang === 'AR' ? 'لا تدفع رصيدك النهائي للمورد أبداً دون فحص مستقل' : 'Never pay your final supplier balance without an independent check'}
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
-            Our certified bilingual inspectors arrive at the factory anywhere in China within 48 hours. You receive an exhaustive 40+ page photographic report with high-resolution video proof before goods leave the factory gate.
+            {lang === 'AR' ? 'مفتشونا المعتمدون يصلون إلى أي مصنع في الصين خلال 48 ساعة. ستحصل على تقرير فوتوغرافي مفصل يتجاوز 40 صفحة قبل خروج البضائع من المصنع.' : 'Our certified bilingual inspectors arrive at the factory anywhere in China within 48 hours. You receive an exhaustive 40+ page photographic report with high-resolution video proof before goods leave the factory gate.'}
           </p>
         </div>
 
@@ -73,18 +75,18 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                       {serv.shortCode}
                     </span>
                     <span className="text-[11px] font-semibold text-slate-400">
-                      {serv.turnaround.split(' ')[0]} turnaround
+                      {lang === 'AR' && serv.turnaroundAr ? serv.turnaroundAr.split(' ')[0] + ' وقت الإنجاز' : serv.turnaround.split(' ')[0] + ' turnaround'}
                     </span>
                   </div>
                   <h3 className="text-base font-bold text-slate-900 mb-2 leading-snug">
-                    {serv.name}
+                    {lang === 'AR' && serv.nameAr ? serv.nameAr : serv.name}
                   </h3>
                   <p className="text-xs text-slate-500 line-clamp-3 leading-relaxed">
-                    {serv.description}
+                    {lang === 'AR' && serv.descriptionAr ? serv.descriptionAr : serv.description}
                   </p>
                 </div>
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-blue-700">
-                  <span>Explore Standard</span>
+                  <span>{lang === 'AR' ? 'اكتشف المعيار' : 'Explore Standard'}</span>
                   <span className="text-base font-normal">→</span>
                 </div>
               </button>
@@ -107,7 +109,7 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                     {activeService.name}
                   </h3>
                   <p className="text-xs font-semibold text-blue-700">
-                    Production Gate: {activeService.stage}
+                    {lang === 'AR' ? 'بوابة الإنتاج: ' + (activeService.stageAr || activeService.stage) : 'Production Gate: ' + activeService.stage}
                   </p>
                 </div>
               </div>
@@ -120,16 +122,16 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                 <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 text-xs">
                   <FileCheck2 className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 block mb-0.5">Formal Deliverable:</strong>
-                    <span className="text-slate-600">{activeService.deliverable}</span>
+                    <strong className="text-slate-900 block mb-0.5">{lang === 'AR' ? 'المخرجات الرسمية:' : 'Formal Deliverable:'}</strong>
+                    <span className="text-slate-600">{lang === 'AR' && activeService.deliverableAr ? activeService.deliverableAr : activeService.deliverable}</span>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 text-xs">
                   <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                   <div>
-                    <strong className="text-slate-900 block mb-0.5">Recommended Application:</strong>
-                    <span className="text-slate-600">{activeService.idealFor}</span>
+                    <strong className="text-slate-900 block mb-0.5">{lang === 'AR' ? 'التطبيق الموصى به:' : 'Recommended Application:'}</strong>
+                    <span className="text-slate-600">{lang === 'AR' && activeService.idealForAr ? activeService.idealForAr : activeService.idealFor}</span>
                   </div>
                 </div>
               </div>
@@ -140,13 +142,13 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                   className="px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition-all flex items-center gap-2"
                 >
                   <Eye className="w-4 h-4 text-blue-400" />
-                  <span>Inspect Checkpoint Protocol</span>
+                  <span>{lang === 'AR' ? 'افحص بروتوكول نقطة التفتيش' : 'Inspect Checkpoint Protocol'}</span>
                 </button>
                 <button
                   onClick={() => onOpenQuote(`inspection_${activeService.id}`)}
                   className="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold transition-all flex items-center gap-2 shadow-sm"
                 >
-                  <span>Book Inspector in China</span>
+                  <span>{lang === 'AR' ? 'احجز مفتش في الصين' : 'Book Inspector in China'}</span>
                   <span className="text-blue-200">›››</span>
                 </button>
               </div>
@@ -158,7 +160,7 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                 <div className="flex items-center gap-2">
                   <Sliders className="w-4 h-4 text-blue-400" />
                   <span className="text-xs font-bold uppercase tracking-wider text-slate-300">
-                    AQL Sampling Calculator
+                    {lang === 'AR' ? 'حاسبة أخذ العينات AQL' : 'AQL Sampling Calculator'}
                   </span>
                 </div>
                 <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
@@ -169,7 +171,7 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
               {/* Order Quantity Input */}
               <div className="my-5">
                 <label className="text-xs font-bold text-slate-400 block mb-2">
-                  Your Production Batch Size (Units):
+                  {lang === 'AR' ? 'حجم دفعة الإنتاج الخاصة بك (وحدات):' : 'Your Production Batch Size (Units):'}
                 </label>
                 <div className="flex items-center gap-3">
                   <input
@@ -180,10 +182,10 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                     onChange={(e) => setLotSizeInput(Math.max(1, Number(e.target.value)))}
                     className="w-full bg-slate-800/90 text-white font-mono text-lg font-bold px-4 py-2.5 rounded-xl border border-slate-700 focus:outline-hidden focus:border-blue-500"
                   />
-                  <span className="text-xs text-slate-400 font-bold uppercase">pcs</span>
+                  <span className="text-xs text-slate-400 font-bold uppercase">{lang === 'AR' ? 'قطعة' : 'pcs'}</span>
                 </div>
                 <p className="text-[11px] text-slate-400 mt-1.5">
-                  Lot Range Bracket: <span className="text-blue-400 font-semibold">{aqlResult.lotRange} units</span>
+                  {lang === 'AR' ? 'نطاق الدفعة:' : 'Lot Range Bracket:'} <span className="text-blue-400 font-semibold">{aqlResult.lotRange} {lang === 'AR' ? 'وحدة' : 'units'}</span>
                 </p>
               </div>
 
@@ -191,9 +193,9 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
               <div className="space-y-2.5 py-4 border-t border-slate-800 text-xs">
                 
                 <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-800/60">
-                  <span className="text-slate-300 font-medium">Random Cartons Pull Size:</span>
+                  <span className="text-slate-300 font-medium">{lang === 'AR' ? 'حجم سحب الكراتين العشوائي:' : 'Random Cartons Pull Size:'}</span>
                   <span className="text-base font-extrabold text-blue-400 font-mono">
-                    {aqlResult.sampleSize} units inspected
+                    {aqlResult.sampleSize} {lang === 'AR' ? 'وحدة مفحوصة' : 'units inspected'}
                   </span>
                 </div>
 
@@ -205,7 +207,7 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                     <span className="text-lg font-extrabold text-white font-mono">
                       {aqlResult.criticalAccept}
                     </span>
-                    <span className="text-[10px] text-slate-400 block mt-0.5">Zero tolerance</span>
+                    <span className="text-[10px] text-slate-400 block mt-0.5">{lang === 'AR' ? 'عدم التسامح' : 'Zero tolerance'}</span>
                   </div>
 
                   <div className="p-2.5 rounded-xl bg-slate-800/40 border border-slate-700/50 text-center">
@@ -215,7 +217,7 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                     <span className="text-lg font-extrabold text-white font-mono">
                       ≤ {aqlResult.majorAccept}
                     </span>
-                    <span className="text-[10px] text-slate-400 block mt-0.5">AQL 2.5 standard</span>
+                    <span className="text-[10px] text-slate-400 block mt-0.5">{lang === 'AR' ? 'معيار AQL 2.5' : 'AQL 2.5 standard'}</span>
                   </div>
 
                   <div className="p-2.5 rounded-xl bg-slate-800/40 border border-slate-700/50 text-center">
@@ -225,15 +227,15 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                     <span className="text-lg font-extrabold text-white font-mono">
                       ≤ {aqlResult.minorAccept}
                     </span>
-                    <span className="text-[10px] text-slate-400 block mt-0.5">AQL 4.0 standard</span>
+                    <span className="text-[10px] text-slate-400 block mt-0.5">{lang === 'AR' ? 'معيار AQL 4.0' : 'AQL 4.0 standard'}</span>
                   </div>
                 </div>
 
               </div>
 
               <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                <span>Standard General Inspection Level II</span>
-                <span className="text-emerald-400 font-bold">18-Hour Digital PDF Delivery</span>
+                <span>{lang === 'AR' ? 'مستوى الفحص العام القياسي II' : 'Standard General Inspection Level II'}</span>
+                <span className="text-emerald-400 font-bold">{lang === 'AR' ? 'تسليم PDF رقمي خلال 18 ساعة' : '18-Hour Digital PDF Delivery'}</span>
               </div>
             </div>
 
@@ -251,9 +253,9 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                   </div>
                   <div>
                     <h3 className="text-lg font-extrabold text-slate-900 font-['Space_Grotesk']">
-                      Sino Gate On-Site Inspection Protocol
+                      {lang === 'AR' ? 'بروتوكول Sino Gate للفحص الميداني' : 'Sino Gate On-Site Inspection Protocol'}
                     </h3>
-                    <p className="text-xs text-slate-500">Standard criteria executed on factory floor</p>
+                    <p className="text-xs text-slate-500">{lang === 'AR' ? 'المعايير القياسية المنفذة في طابق المصنع' : 'Standard criteria executed on factory floor'}</p>
                   </div>
                 </div>
                 <button
@@ -268,40 +270,40 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                 <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                   <h4 className="font-bold text-slate-900 mb-1 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                    1. Workmanship & Cosmetic Inspection
+                    {lang === 'AR' ? '1. فحص الصناعة والمظهر' : '1. Workmanship & Cosmetic Inspection'}
                   </h4>
                   <p className="text-slate-600 leading-relaxed">
-                    Inspecting under 1000 lux illumination for scratches, paint defects, flash/burrs, loose threads, color pantone deviation, and assembly gaps.
+                    {lang === 'AR' ? 'الفحص تحت إضاءة 1000 لوكس للخدوش وعيوب الطلاء والخيوط السائبة وانحراف الألوان وفجوات التجميع.' : 'Inspecting under 1000 lux illumination for scratches, paint defects, flash/burrs, loose threads, color pantone deviation, and assembly gaps.'}
                   </p>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                   <h4 className="font-bold text-slate-900 mb-1 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                    2. Packaging & Barcode Verification
+                    {lang === 'AR' ? '2. التحقق من التعبئة والباركود' : '2. Packaging & Barcode Verification'}
                   </h4>
                   <p className="text-slate-600 leading-relaxed">
-                    Scanning UPC/EAN retail barcodes with handheld scanners, verifying Amazon FBA pallet labels, shipping marks, polybag suffocation warnings, and silica gel desiccant packs.
+                    {lang === 'AR' ? 'مسح الباركود، التحقق من ملصقات منصات أمازون FBA، وعلامات الشحن وتحذيرات الاختناق.' : 'Scanning UPC/EAN retail barcodes with handheld scanners, verifying Amazon FBA pallet labels, shipping marks, polybag suffocation warnings, and silica gel desiccant packs.'}
                   </p>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                   <h4 className="font-bold text-slate-900 mb-1 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                    3. On-Site Physical & Stress Testing
+                    {lang === 'AR' ? '3. الاختبارات الفيزيائية واختبارات الإجهاد' : '3. On-Site Physical & Stress Testing'}
                   </h4>
                   <p className="text-slate-600 leading-relaxed">
-                    ISTA 1A Carton drop test (10 drops from specified height), hi-pot electrical safety check, rubbing test with 95% alcohol on printed silkscreen logos, torque/pull test.
+                    {lang === 'AR' ? 'اختبار إسقاط الكرتون، فحص السلامة الكهربائية، اختبار الاحتكاك على الشعارات، اختبار السحب.' : 'ISTA 1A Carton drop test (10 drops from specified height), hi-pot electrical safety check, rubbing test with 95% alcohol on printed silkscreen logos, torque/pull test.'}
                   </p>
                 </div>
 
                 <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
                   <h4 className="font-bold text-slate-900 mb-1 flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-blue-600"></span>
-                    4. Quantity & Shipping Carton Integrity
+                    {lang === 'AR' ? '4. الكمية وسلامة كرتون الشحن' : '4. Quantity & Shipping Carton Integrity'}
                   </h4>
                   <p className="text-slate-600 leading-relaxed">
-                    Gross weight and net weight calibration per carton, dimensional measurements (CBM), and counting total packaged cartons against purchase order bill of quantities.
+                    {lang === 'AR' ? 'معايرة الوزن الإجمالي والصافي، القياسات الحجمية، وحساب الكراتين المعبأة مقابل فاتورة أمر الشراء.' : 'Gross weight and net weight calibration per carton, dimensional measurements (CBM), and counting total packaged cartons against purchase order bill of quantities.'}
                   </p>
                 </div>
               </div>
@@ -311,7 +313,7 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                   onClick={() => setShowChecklistModal(false)}
                   className="px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold"
                 >
-                  Close Preview
+                  {lang === 'AR' ? 'إغلاق المعاينة' : 'Close Preview'}
                 </button>
                 <button
                   onClick={() => {
@@ -320,7 +322,7 @@ export const QualityInspectionSection: React.FC<QualityInspectionProps> = ({ onO
                   }}
                   className="px-5 py-2.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold shadow-sm"
                 >
-                  Book This Inspection
+                  {lang === 'AR' ? 'حجز هذا الفحص' : 'Book This Inspection'}
                 </button>
               </div>
             </div>

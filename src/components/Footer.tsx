@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
 import { ShieldCheck, Phone, Mail, MapPin, Globe, ArrowUpRight } from 'lucide-react';
 
 interface FooterProps {
@@ -6,6 +7,7 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
+  const { lang, isRtl } = useLanguage();
   return (
     <footer className="bg-[#111622] text-slate-300 text-xs border-t border-slate-800">
       
@@ -14,28 +16,28 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
         <div className="bg-linear-to-r from-slate-900 to-slate-800 rounded-3xl p-8 sm:p-10 border border-slate-700/60 flex flex-col lg:flex-row items-center justify-between gap-6">
           <div className="max-w-2xl">
             <span className="text-[10px] font-extrabold uppercase tracking-widest text-blue-400 font-['Space_Grotesk'] block mb-2">
-              Ready to secure your China supply chain?
+              {lang === 'AR' ? 'هل أنت مستعد لتأمين سلسلة التوريد الخاصة بك في الصين؟' : 'Ready to secure your China supply chain?'}
             </span>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-['Space_Grotesk']">
-              Speak with a bilingual China operations specialist today
+              {lang === 'AR' ? 'تحدث مع متخصص عمليات ثنائي اللغة في الصين اليوم' : 'Speak with a bilingual China operations specialist today'}
             </h3>
             <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-              Whether you need urgent vessel space in Shenzhen, factory audits in Zhejiang, or rapid Hong Kong incorporation, our boots on the ground are ready.
+              {lang === 'AR' ? 'سواء كنت بحاجة إلى مساحة شحن عاجلة في شينزين، أو تدقيق مصانع في تشجيانغ، أو تأسيس سريع لشركة في هونغ كونغ، فريقنا الميداني مستعد.' : 'Whether you need urgent vessel space in Shenzhen, factory audits in Zhejiang, or rapid Hong Kong incorporation, our boots on the ground are ready.'}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <a
-              href="tel:+8675588269100"
+              href="tel:+8618567413851"
               className="px-6 py-3.5 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-600 transition-all flex items-center gap-2"
             >
               <Phone className="w-3.5 h-3.5 text-blue-400" />
-              <span>+86 755 8826 9100</span>
+              <span>+86 18567413851</span>
             </a>
             <button
               onClick={() => onOpenQuote()}
               className="px-8 py-3.5 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-extrabold text-xs shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2"
             >
-              <span>Request Immediate Quote</span>
+              <span>{lang === 'AR' ? 'اطلب تسعيرة فورية' : 'Request Immediate Quote'}</span>
               <span className="text-blue-200">›››</span>
             </button>
           </div>
@@ -49,9 +51,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
           {/* Col 1: Brand & License */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-blue-600 flex items-center justify-center text-white font-bold text-lg font-['Space_Grotesk']">
-                SG
-              </div>
+              <img src="https://raw.githubusercontent.com/andrewandrre88-rgb/MILA-PLASTICS-IMAGES/main/sourcing%20(Logo)%20(1).png" alt="Logo" className="h-10 w-auto object-contain" />
               <div>
                 <span className="text-lg font-extrabold text-white font-['Space_Grotesk']">
                   SINO GATE
@@ -62,19 +62,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
               </div>
             </div>
 
-            <p className="text-xs text-slate-400 leading-relaxed pr-6">
-              Sino Gate is an independent international freight forwarding and cross-border trade consultancy headquartered in Shenzhen and Hong Kong. We bridge international buyers directly with audited Chinese manufacturing and compliant corporate infrastructure.
+            <p className="text-xs text-slate-400 leading-relaxed pr-6 rtl:pr-0 rtl:pl-6">
+              {lang === 'AR' ? 'ساينو جيت هي شركة استشارات شحن وتجارة دولية مستقلة مقرها في شينزين وهونغ كونغ. نربط المشترين الدوليين مباشرة بالمصانع الصينية المدققة.' : 'Sino Gate is an independent international freight forwarding and cross-border trade consultancy headquartered in Shenzhen and Hong Kong. We bridge international buyers directly with audited Chinese manufacturing and compliant corporate infrastructure.'}
             </p>
 
             <div className="flex flex-wrap items-center gap-2 pt-2">
               <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
-                NVOCC Registered
+                {lang === 'AR' ? 'مسجل كـ NVOCC' : 'NVOCC Registered'}
               </span>
               <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
-                HK TCSP License
+                {lang === 'AR' ? 'ترخيص HK TCSP' : 'HK TCSP License'}
               </span>
               <span className="text-[10px] font-mono px-2.5 py-1 rounded bg-slate-800 text-slate-300 border border-slate-700">
-                ISO 2859-1 Standards
+                {lang === 'AR' ? 'معايير ISO 2859-1' : 'ISO 2859-1 Standards'}
               </span>
             </div>
           </div>
@@ -82,47 +82,47 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
           {/* Col 2: Freight & Logistics */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider font-['Space_Grotesk']">
-              Logistics & Freight
+              {lang === 'AR' ? 'اللوجستيات والشحن' : 'Logistics & Freight'}
             </h4>
             <ul className="space-y-2 text-slate-400">
-              <li><a href="#logistics" className="hover:text-white transition-colors">Ocean FCL Full Container</a></li>
-              <li><a href="#logistics" className="hover:text-white transition-colors">LCL Consolidation (1-15 CBM)</a></li>
-              <li><a href="#logistics" className="hover:text-white transition-colors">Air Express & Freight Charters</a></li>
-              <li><a href="#logistics" className="hover:text-white transition-colors">China-Europe Railway Express</a></li>
-              <li><a href="#logistics" className="hover:text-white transition-colors">DDP Door-to-Door Delivery</a></li>
-              <li><a href="#logistics" className="hover:text-white transition-colors">China Export Customs Brokerage</a></li>
+              <li><a href="#logistics" className="hover:text-white transition-colors">{lang === 'AR' ? 'الشحن البحري حاويات كاملة (FCL)' : 'Ocean FCL Full Container'}</a></li>
+              <li><a href="#logistics" className="hover:text-white transition-colors">{lang === 'AR' ? 'الشحن الجزئي (1-15 متر مكعب)' : 'LCL Consolidation (1-15 CBM)'}</a></li>
+              <li><a href="#logistics" className="hover:text-white transition-colors">{lang === 'AR' ? 'الشحن الجوي السريع والمستأجر' : 'Air Express & Freight Charters'}</a></li>
+              <li><a href="#logistics" className="hover:text-white transition-colors">{lang === 'AR' ? 'قطار الشحن السريع بين الصين وأوروبا' : 'China-Europe Railway Express'}</a></li>
+              <li><a href="#logistics" className="hover:text-white transition-colors">{lang === 'AR' ? 'التوصيل من الباب للباب (DDP)' : 'DDP Door-to-Door Delivery'}</a></li>
+              <li><a href="#logistics" className="hover:text-white transition-colors">{lang === 'AR' ? 'التخليص الجمركي للصادرات في الصين' : 'China Export Customs Brokerage'}</a></li>
             </ul>
           </div>
 
-          {/* Col 3: Sourcing & Quality Inspection */}
+          {/* Col 3: {lang === 'AR' ? 'التوريد والجودة' : 'Sourcing & Quality'} Inspection */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider font-['Space_Grotesk']">
-              Sourcing & Quality
+              {lang === 'AR' ? 'التوريد والجودة' : 'Sourcing & Quality'}
             </h4>
             <ul className="space-y-2 text-slate-400">
-              <li><a href="#sourcing" className="hover:text-white transition-colors">Direct Factory Sourcing</a></li>
-              <li><a href="#sourcing" className="hover:text-white transition-colors">Chinese NNN Legal Contracts</a></li>
-              <li><a href="#sourcing" className="hover:text-white transition-colors">Sample Consolidation Hub</a></li>
-              <li><a href="#inspection" className="hover:text-white transition-colors">Pre-Shipment Inspection (PSI)</a></li>
-              <li><a href="#inspection" className="hover:text-white transition-colors">During Production (DUPRO)</a></li>
-              <li><a href="#inspection" className="hover:text-white transition-colors">Container Loading Check (CLC)</a></li>
-              <li><a href="#inspection" className="hover:text-white transition-colors">Supplier Capability Audit (FSA)</a></li>
+              <li><a href="#sourcing" className="hover:text-white transition-colors">{lang === 'AR' ? 'التوريد المباشر من المصنع' : 'Direct Factory Sourcing'}</a></li>
+              <li><a href="#sourcing" className="hover:text-white transition-colors">{lang === 'AR' ? 'العقود القانونية الصينية NNN' : 'Chinese NNN Legal Contracts'}</a></li>
+              <li><a href="#sourcing" className="hover:text-white transition-colors">{lang === 'AR' ? 'مركز تجميع العينات' : 'Sample Consolidation Hub'}</a></li>
+              <li><a href="#inspection" className="hover:text-white transition-colors">{lang === 'AR' ? 'فحص ما قبل الشحن (PSI)' : 'Pre-Shipment Inspection (PSI)'}</a></li>
+              <li><a href="#inspection" className="hover:text-white transition-colors">{lang === 'AR' ? 'فحص أثناء الإنتاج (DUPRO)' : 'During Production (DUPRO)'}</a></li>
+              <li><a href="#inspection" className="hover:text-white transition-colors">{lang === 'AR' ? 'فحص تحميل الحاويات (CLC)' : 'Container Loading Check (CLC)'}</a></li>
+              <li><a href="#inspection" className="hover:text-white transition-colors">{lang === 'AR' ? 'تدقيق قدرات المورد (FSA)' : 'Supplier Capability Audit (FSA)'}</a></li>
             </ul>
           </div>
 
           {/* Col 4: Corporate Setup */}
           <div className="space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider font-['Space_Grotesk']">
-              Company Formation
+              {lang === 'AR' ? 'تأسيس الشركات' : 'Company Formation'}
             </h4>
             <ul className="space-y-2 text-slate-400">
-              <li><a href="#company-china" className="hover:text-white transition-colors">Open a Company in China (WFOE)</a></li>
-              <li><a href="#company-china" className="hover:text-white transition-colors">China Domestic Bank Accounts</a></li>
-              <li><a href="#company-china" className="hover:text-white transition-colors">Chinese VAT Fapiao Setup</a></li>
-              <li><a href="#company-hk" className="hover:text-white transition-colors">Open a Company in Hong Kong</a></li>
-              <li><a href="#company-hk" className="hover:text-white transition-colors">HK Multi-Currency Banking</a></li>
-              <li><a href="#company-hk" className="hover:text-white transition-colors">HK 0% Offshore Profit Exemption</a></li>
-              <li><a href="#company-china" className="hover:text-white transition-colors">HK + WFOE Hybrid Structure</a></li>
+              <li><a href="#company-china" className="hover:text-white transition-colors">{lang === 'AR' ? 'تأسيس شركة في الصين (WFOE)' : 'Open a Company in China (WFOE)'}</a></li>
+              <li><a href="#company-china" className="hover:text-white transition-colors">{lang === 'AR' ? 'الحسابات البنكية المحلية في الصين' : 'China Domestic Bank Accounts'}</a></li>
+              <li><a href="#company-china" className="hover:text-white transition-colors">{lang === 'AR' ? 'إعداد الفواتير الضريبية الصينية' : 'Chinese VAT Fapiao Setup'}</a></li>
+              <li><a href="#company-hk" className="hover:text-white transition-colors">{lang === 'AR' ? 'تأسيس شركة في هونغ كونغ' : 'Open a Company in Hong Kong'}</a></li>
+              <li><a href="#company-hk" className="hover:text-white transition-colors">{lang === 'AR' ? 'الخدمات المصرفية متعددة العملات في HK' : 'HK Multi-Currency Banking'}</a></li>
+              <li><a href="#company-hk" className="hover:text-white transition-colors">{lang === 'AR' ? 'إعفاء ضريبي 0% على الأرباح الخارجية في HK' : 'HK 0% Offshore Profit Exemption'}</a></li>
+              <li><a href="#company-china" className="hover:text-white transition-colors">{lang === 'AR' ? 'الهيكل الهجين HK + WFOE' : 'HK + WFOE Hybrid Structure'}</a></li>
             </ul>
           </div>
 
@@ -131,11 +131,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenQuote }) => {
         {/* Bottom Sub-bar */}
         <div className="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
           <div>
-            © 2026 Sino Gate Logistics & Corporate Advisory Ltd. All rights reserved.
+            {lang === 'AR' ? '© 2026 ساينو جيت للخدمات اللوجستية والاستشارات. جميع الحقوق محفوظة.' : '© 2026 Sino Gate Logistics & Corporate Advisory Ltd. All rights reserved.'}
           </div>
           <div className="flex items-center gap-6">
-            <span>Shenzhen • Hong Kong • Ningbo • Yiwu • Shanghai</span>
-            <span>Privacy & Confidentiality Protected</span>
+            <span>{lang === 'AR' ? 'شينزين • هونغ كونغ • نينغبو • إيوو • شانغهاي' : 'Shenzhen • Hong Kong • Ningbo • Yiwu • Shanghai'}</span>
+            <span>{lang === 'AR' ? 'الخصوصية والسرية محمية' : 'Privacy & Confidentiality Protected'}</span>
           </div>
         </div>
 

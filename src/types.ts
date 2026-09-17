@@ -24,6 +24,12 @@ export interface RouteOption {
 }
 
 export interface InspectionType {
+  nameAr?: string;
+  stageAr?: string;
+  descriptionAr?: string;
+  deliverableAr?: string;
+  turnaroundAr?: string;
+  idealForAr?: string;
   id: string;
   name: string;
   shortCode: string;
@@ -45,6 +51,9 @@ export interface AQLThreshold {
 }
 
 export interface CorporateComparisonItem {
+  featureAr?: string;
+  wfoeChinaAr?: string;
+  hkCompanyAr?: string;
   feature: string;
   wfoeChina: string;
   hkCompany: string;
@@ -52,6 +61,11 @@ export interface CorporateComparisonItem {
 }
 
 export interface OfficeLocation {
+  cityAr?: string;
+  regionAr?: string;
+  roleAr?: string;
+  teamLeadAr?: string;
+  specialtyAr?: string;
   city: string;
   region: string;
   role: string;
